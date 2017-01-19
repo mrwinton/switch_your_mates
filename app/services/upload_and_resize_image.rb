@@ -1,7 +1,7 @@
 class UploadAndResizeImage
   attr_reader :image
 
-  DIRECTORY = 'public/images/upload'
+  DIRECTORY = Rails.root.to_s + '/public/images/upload'
 
   def initialize(image)
     @image = image

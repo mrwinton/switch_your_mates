@@ -1,9 +1,15 @@
 class Api::V1::SwapController < ApplicationController
+  PERSON_DESTINATION_PATH = '/root/swap_person_input.jpg'
+  GROUP_DESTINATION_PATH = '/root/swap_group_input.jpg'
+
   def create
     person_image_path = UploadAndResizeImage.new(person_image).call
     group_image_path = UploadAndResizeImage.new(group_image).call
 
-    SwapFaces.new(person_image_path, group_image_path, close_faces: close_faces).call
+    person_docker_path = CopyToDocker.new(target_path: person_image_path, destination_path: PERSON_DESTINATION_PATH).call
+    group_docker_path = CopyToDocker.new(target_path: group_image_path, destination_path: GROUP_DESTINATION_PATH).call
+
+    SwapFaces.new(person_docker_path, group_docker_path, close_faces: close_faces).call
     CopyFromDocker.new(destination_path: group_image_path).call
 
     render json: { :image_path => sanitised_image_path(group_image_path) }
@@ -28,6 +34,6 @@ class Api::V1::SwapController < ApplicationController
   end
 
   def sanitised_image_path(path)
-    path.sub("public", "")
+    path.sub("#{Rails.root}/public", "")
   end
 end

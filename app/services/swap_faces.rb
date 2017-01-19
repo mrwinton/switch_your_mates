@@ -8,7 +8,7 @@ class SwapFaces
   end
 
   def call
-    `docker exec #{docker_container} /root/faceswap.py #{host_person_image_path} #{host_group_image_path} #{padding}`
+    `docker exec #{docker_container} /root/faceswap.py #{person_image_path} #{group_image_path} #{padding}`
   end
 
   private
@@ -19,17 +19,5 @@ class SwapFaces
 
   def docker_container
     ENV["DOCKER_CONTAINER"]
-  end
-
-  def current_path
-    `pwd`
-  end
-
-  def host_person_image_path
-    "/host" + current_path.strip + "/" + person_image_path
-  end
-
-  def host_group_image_path
-    "/host" + current_path.strip + "/" + group_image_path
   end
 end
