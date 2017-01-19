@@ -1,0 +1,10 @@
+// vendor
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+// common
+@import 'variables';
+@import 'functions';
+
+// pages
+@import 'home';

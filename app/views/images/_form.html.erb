@@ -1,0 +1,15 @@
+<div class="form-container">
+  <%= form_tag '/mix', { :multipart => true, :class=>"form-inline" } do %>
+    <div class="form-group text-center">
+      <%= file_field_tag 'upload[group_image]', :id => 'image-input' %>
+    </div>
+
+    <div class="image-view-container row text-center">
+      <image id="image-view" class="image-view img-responsive img-rounded" src="" alt="choose an image">
+    </div>
+
+    <div class="form-group text-center">
+      <%= submit_tag "UPLOAD!", :id => 'image-save', :class => 'btn btn-primary btn-submit' %>
+    </div>
+  <% end %>
+</div>

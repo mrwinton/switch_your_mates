@@ -1,0 +1,65 @@
+<div class="mode text-center">
+  <h2>SWAP MODE ENGAGED</h2>
+  <span class="change-mode">
+    <a href="<%= mix_path %>">*actually, let's mix 'em</a>
+  </span>
+</div>
+
+<div id="form-container">
+  <%= form_tag '/api/v1/swap', { :multipart => true, :class=>"form-inline" } do %>
+
+  <div id="select-person-image" class="select-image col-sm-6">
+    <div class="form-group text-center">
+      <%= file_field_tag 'upload[person_image]', :id => 'person-image-input', :class => 'image-input' %>
+    </div>
+
+    <div class="image-view-container row text-center">
+      <image id="portrait-image-view" class="image-view img-responsive img-rounded" src="" alt="choose a portrait">
+    </div>
+  </div>
+
+  <div id="select-group-image" class="select-image col-sm-6">
+    <div class="form-group text-center">
+      <%= file_field_tag 'upload[group_image]', :id => 'group-image-input', :class => 'image-input' %>
+    </div>
+
+    <div class="image-view-container row text-center">
+      <image id="group-image-view" class="image-view img-responsive img-rounded" src="" alt="choose a group picture">
+    </div>
+  </div>
+
+  <div class="col-sm-12 text-center">
+    <div class="checkbox">
+      <label>
+        <!-- hidden field to pass parmas[:close_faces] = false, when the check box is not selected -->
+        <%= hidden_field_tag :close_faces, '' %>
+        <%= check_box_tag :close_faces %> are the faces like super close together?
+      </label>
+    </div>
+  </div>
+
+  <div class="col-sm-12 text-center">
+    <%= submit_tag "UPLOAD!", :id => 'image-save', :class => 'btn btn-primary btn-brand' %>
+  </div>
+  <% end %>
+</div>
+
+<div id="loading-container" class="hidden">
+  <div class="col-sm-12">
+    <p class="text-center">
+      thinking about this... real hard...
+    </p>
+    <%= image_tag('dog.gif', :class => "img-responsive img-rounded") %>
+  </div>
+</div>
+
+<div id="result-container" class="hidden">
+  <div class="image-view-container row text-center">
+    <h3>hehe...</h3>
+    <image id="result-image-view" class="image-view img-responsive img-rounded" src="">
+  </div>
+
+  <div class="col-sm-12 text-center">
+    <%= button_tag(:type => 'button', :id => 'reset', :class => 'btn btn-primary btn-brand') { content_tag(:strong, 'Again!') } %>
+  </div>
+</div>
