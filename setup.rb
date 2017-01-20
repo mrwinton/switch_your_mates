@@ -12,6 +12,6 @@ unless File.exist?('shape_predictor_68_face_landmarks.dat.bz2')
   `bzip2 -d shape_predictor_68_face_landmarks.dat.bz2`
 end
 
-`docker cp #{path}/shape_predictor_68_face_landmarks.dat #{docker_container}:/root/`
-`docker cp #{path}/facemixer.py #{docker_container}:/root/`
-`docker cp #{path}/faceswap.py #{docker_container}:/root/`
+`docker cp #{path}/shape_predictor_68_face_landmarks.dat #{docker_container}:/root/shape_predictor_68_face_landmarks.dat`
+`docker cp #{path}/facemixer.py #{docker_container}:/root/facemixer.py`
+`docker cp #{path}/faceswap.py #{docker_container}:/root/faceswap.py`
