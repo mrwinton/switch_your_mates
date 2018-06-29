@@ -1,28 +1,39 @@
-== README
+# How to run
+Switch Your Mates is run in two components.
+First, we have the face recognition container and second, we have the Rails app.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup docker
+In a new tab:
+```sh
+docker pull bamos/openface
+docker run -p 9000:9000 -p 8000:8000 -t -i bamos/openface /bin/bash
+```
 
-Things you may want to cover:
+This will setup a new docker instance, to close the instance hit `Ctrl-c`.
 
-* Ruby version
+## Setup Rails app
+In a new tab:
+```sh
+cd switch_your_mates
+ruby setup.rb
+```
 
-* System dependencies
+The `setup.rb` script hooks up your live docker instance to the rails app and copied across the `swap` and `mix` python scripts that do the face swap logic!
 
-* Configuration
+## Running
+```sh
+bundle exec rails server
+```
 
-* Database creation
+Verify the deployment by navigating to your server address in your preferred browser and start switching faces!
 
-* Database initialization
+```sh
+http://localhost:3000
+```
 
-* How to run the test suite
+License
+----
 
-* Services (job queues, cache servers, search engines, etc.)
+MIT
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+**Free Software, Hell Yeah!**
